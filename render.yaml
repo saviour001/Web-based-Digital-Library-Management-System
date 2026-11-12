@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: fpn-digital-library
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FLASK_DEBUG
+        value: "0"
+      - key: SESSION_COOKIE_SECURE
+        value: "1"
+      - key: PYTHON_VERSION
+        value: "3.12.7"
